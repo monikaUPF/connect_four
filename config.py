@@ -1,9 +1,11 @@
+import random
+
 class Token:
 	def __init__(self):
-		self.token = get_token()
-		self.expressions = create_expressions(self)
-		self.positive = get_expression(self)
-		self.negative = get_expression(self, "negative")
+		self.expressions = self.create_expressions()
+		self.positive = self.get_expression()
+		#self.negative = self.get_expression("negative")		
+		self.token = self.get_token()
 
 	def get_token(self):
 		token = ""
@@ -13,19 +15,19 @@ class Token:
 				color = input("Pick up your token.\n Enter 'O' for noughts or 'X' for crosses:\n")
 				if color in tokens:
 					token = color.upper()
-					print(self.positive)
-					print("You will be:", token)
+					expression = "\t"+ self.positive.upper() + "!!!"
+					print(expression + "You will be: " + token +"s\n")
 					break
 					
 			except ValueError:
-				print("Ooops! That is not a valid option. Try again ...")
+				print("Ooops! That is not a valid option. Try again ...\n")
 		return token
 
 	def get_expression(self, valence = "positive"):
 		values = self.expressions[valence]
 		max_length = len(values)
-		random = randint(0,max_length)
-		adjective = values[random]
+		random_n = random.randint(0,max_length)
+		adjective = values[random_n]
 
 		return adjective
 
@@ -37,7 +39,27 @@ class Token:
 		for line in lines:
 			entry = line.split(":")
 			key = entry[0]
-			values = entry[1].split(",").strip()
+			values = entry[1].strip().split(",")
 			dict_adjectives[key] = values
 
 		return dict_adjectives
+
+
+class User(Token):
+	def __init__(self):
+		self.name = self.get_name()
+		self.welcome_message()
+		self.count = 1
+
+	def get_name(self):
+		print("------------------")
+		name = input("Insert your name or press Enter for a default name:\n")
+		# TODO check bug when enter is the option
+		if not name:
+			name = "User "+ str(self.count)
+
+		return name
+
+	def welcome_message(self):
+		text= "Welcome, " + str(self.name) + "!"
+		print(text)
