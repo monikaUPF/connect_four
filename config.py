@@ -2,26 +2,11 @@ import random
 
 class Token:
 	def __init__(self):
-		self.expressions = self.create_expressions()
-		self.positive = self.get_expression()
-		#self.negative = self.get_expression("negative")		
-		self.token = self.get_token()
-
-	def get_token(self):
-		token = ""
-		while True:
-			tokens = ["x", "X", "o", "O"]
-			try:
-				color = input("Pick up your token.\n Enter 'O' for noughts or 'X' for crosses:\n")
-				if color in tokens:
-					token = color.upper()
-					expression = "\t"+ self.positive.upper() + "!!!"
-					print(expression + "You will be: " + token +"s\n")
-					break
-					
-			except ValueError:
-				print("Ooops! That is not a valid option. Try again ...\n")
-		return token
+		#self.expressions = self.create_expressions()
+		#self.positive = self.get_expression()
+		#self.negative = self.get_expression("negative")
+		# Comment the following line when uncommenting the lines above		
+		self.positive = "Dope"
 
 	def get_expression(self, valence = "positive"):
 		values = self.expressions[valence]
@@ -47,10 +32,10 @@ class Token:
 
 
 class User:
-	def __init__(self):
-		self.user1 = self.get_name(1)
-		self.user2 = self.get_name(2)
+	def __init__(self, turn, token = ""):
+		self.user = self.get_name(turn)
 		self.welcome_message()
+		self.token = self.get_token(token)
 
 	def get_name(self, count):
 		print("------------------")
@@ -63,5 +48,27 @@ class User:
 			return name
 
 	def welcome_message(self):
-		text= "Welcome, " + str(self.user1) + " and " + str(self.user2)+ "!"
+		text= "Welcome, " + str(self.user) + "!"
 		print(text)
+
+	def get_token(self, token):
+		if token == "X":
+			print("You will be: Os\n")
+		elif token == "O":
+			print("You will be: Xs\n")
+
+		else:
+			while True:
+				tokens = ["x", "X", "o", "O"]
+				try:
+					color = input("Pick up your token.\n Enter 'O' for noughts or 'X' for crosses:\n")
+					if color in tokens:
+						token = color.upper()
+						#expression = "\t"+ self.positive.upper() + "!!!"
+						#print(expression + "You will be: " + token +"s\n")
+						print("You will be: " + token +"s\n")
+						break
+						
+				except ValueError:
+					print("Ooops! That is not a valid option. Try again ...\n")
+		return token
