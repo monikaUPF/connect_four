@@ -14,8 +14,8 @@ print("You are free to provide real, fake or no personal data at all: it does no
 print("---------------------\n")
 
 # User set up 
-Token()
 User()
+Token()
 
-# TODO Set up the grid
+# TODO Grid set up
 

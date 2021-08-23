@@ -28,6 +28,7 @@ class Token:
 		max_length = len(values)
 		random_n = random.randint(0,max_length)
 		adjective = values[random_n]
+		max_length = 0
 
 		return adjective
 
@@ -45,21 +46,22 @@ class Token:
 		return dict_adjectives
 
 
-class User(Token):
+class User:
 	def __init__(self):
-		self.name = self.get_name()
+		self.user1 = self.get_name(1)
+		self.user2 = self.get_name(2)
 		self.welcome_message()
-		self.count = 1
 
-	def get_name(self):
+	def get_name(self, count):
 		print("------------------")
-		name = input("Insert your name or press Enter for a default name:\n")
-		# TODO check bug when enter is the option
+		default_name = "User " + str(count)
+		text = "User " + str(count) + "! Insert your name or hit Enter for a default name:\n"
+		name = input(text)
 		if not name:
-			name = "User "+ str(self.count)
-
-		return name
+			return default_name
+		else:
+			return name
 
 	def welcome_message(self):
-		text= "Welcome, " + str(self.name) + "!"
+		text= "Welcome, " + str(self.user1) + " and " + str(self.user2)+ "!"
 		print(text)
