@@ -1,0 +1,2 @@
+positive: nice, excellent, brilliant, dope, cool, super
+negative: ooops, damn, argg
