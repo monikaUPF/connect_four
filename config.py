@@ -1,5 +1,51 @@
 import random
 
+class User:
+	def __init__(self, turn, token = ""):
+		self.user = self.get_name(turn)
+		self.welcome_message()
+		self.token = self.get_token(token)
+
+	def get_name(self, count):
+		print("------------------")
+		default_name = "User " + str(count)
+		text = "User " + str(count) + "! Insert your name or hit Enter for a default name:\n"
+		name = input(text)
+		if not name:
+			return default_name
+		else:
+			return name
+
+	def welcome_message(self):
+		text= "Welcome, " + str(self.user) + "!"
+		print(text)
+
+	def get_token(self, token):
+		if token == "X":
+			print("You will be: Os\n")
+			return "O"
+		elif token == "O":
+			print("You will be: Xs\n")
+			return "X"
+
+		else:
+			while True:
+				tokens = ["x", "X", "o", "O"]
+				try:
+					color = input("Pick up your token.\n Enter 'O' for noughts or 'X' for crosses:\n")
+					if color in tokens:
+						token = color.upper()
+						#expression = "\t"+ self.positive.upper() + "!!!"
+						#print(expression + "You will be: " + token +"s\n")
+						print("You will be: " + token +"s\n")
+						break
+						
+				except ValueError:
+					print("Ooops! That is not a valid option. Try again ...\n")
+			return token
+
+#__________________________________________________________________
+# This class is not currently used (update main.py if deleted)
 class Token:
 	def __init__(self):
 		#self.expressions = self.create_expressions()
@@ -29,46 +75,3 @@ class Token:
 			dict_adjectives[key] = values
 
 		return dict_adjectives
-
-
-class User:
-	def __init__(self, turn, token = ""):
-		self.user = self.get_name(turn)
-		self.welcome_message()
-		self.token = self.get_token(token)
-
-	def get_name(self, count):
-		print("------------------")
-		default_name = "User " + str(count)
-		text = "User " + str(count) + "! Insert your name or hit Enter for a default name:\n"
-		name = input(text)
-		if not name:
-			return default_name
-		else:
-			return name
-
-	def welcome_message(self):
-		text= "Welcome, " + str(self.user) + "!"
-		print(text)
-
-	def get_token(self, token):
-		if token == "X":
-			print("You will be: Os\n")
-		elif token == "O":
-			print("You will be: Xs\n")
-
-		else:
-			while True:
-				tokens = ["x", "X", "o", "O"]
-				try:
-					color = input("Pick up your token.\n Enter 'O' for noughts or 'X' for crosses:\n")
-					if color in tokens:
-						token = color.upper()
-						#expression = "\t"+ self.positive.upper() + "!!!"
-						#print(expression + "You will be: " + token +"s\n")
-						print("You will be: " + token +"s\n")
-						break
-						
-				except ValueError:
-					print("Ooops! That is not a valid option. Try again ...\n")
-		return token

@@ -1,9 +1,8 @@
 import sys
-#from user import User
-from config import Token, User
-from game import Grid
+from config import User
+from game import Grid, Turn
 
-# Welcome message
+#--> Welcome message
 print("==========")
 print("Connect 4")
 print("==========\n")
@@ -15,11 +14,20 @@ print("It does not affect the game's performance.")
 
 print("---------------------\n")
 
-# User set up 
+#--> User set up 
 user1 = User(1)
-#Token()
 user2 = User(2, user1.token)
 
-# TODO Grid set up
-Grid()
+#--> Start game
+#### TODO Instructions to insert token row - column
+#--> Grid set up
+mygame = Grid()
+
+# Turns
+turn1u1 = Turn(user1.user)
+mygame.enter_token(turn1u1.new_entry, user1.token)
+
+
+turn1u2 =Turn(user2.user)
+mygame.enter_token(turn1u2.new_entry, user2.token)
 
